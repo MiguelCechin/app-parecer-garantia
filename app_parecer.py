@@ -83,10 +83,11 @@ with st.form("form_parecer"):
             "data primeira parcela": data_parcela_1,
             "data ultima parcela": data_parcela_final,
         }
-    
+
         arquivo = gerar_parecer_garantia(dados)
         with open(arquivo, "rb") as file:
             st.success("Parecer gerado com sucesso!")
             st.download_button("Baixar Documento", file, arquivo, mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+
 
 
