@@ -57,16 +57,16 @@ def gerar_parecer_garantia(dados):
 st.title("Gerador de Parecer de Garantia")
 
 with st.form("form_parecer"):
-    solicitante = st.text_input("Solicitante")
-    numero_celula = st.text_input("Número da CCB")
-    docs = st.text_area("Documentos recebidos")
-    cessionario = st.text_input("Cessionário")
-    cedente = st.text_input("Cedente")
-    devedor = st.text_input("Devedor")
+    solicitante = st.text_input("Solicitante", key="solicitante")
+    numero_celula = st.text_input("Número da CCB", key="ccb")
+    docs = st.text_area("Documentos recebidos", key="docs")
+    cessionario = st.text_input("Cessionário", key="cessionario")
+    cedente = st.text_input("Cedente", key="cedente")
+    devedor = st.text_input("Devedor", key="devedor")
     data_emissao = st.date_input("Data de emissão", key="data_emissao").strftime("%d/%m/%Y")
-    valor_operacao = st.text_input("Valor da operação")
-    data_parcela_1 = st.date_input("Data da primeira parcela", key="data_parcela_1").strftime("%d/%m/%Y")
-    data_parcela_final = st.date_input("Data da última parcela", key="data_parcela_final").strftime("%d/%m/%Y")
+    valor_operacao = st.text_input("Valor da operação", key="valor")
+    data_parcela_1 = st.date_input("Data da primeira parcela", key="parcela_1").strftime("%d/%m/%Y")
+    data_parcela_final = st.date_input("Data da última parcela", key="parcela_final").strftime("%d/%m/%Y")
 
     submitted = st.form_submit_button("Gerar Parecer")
 
