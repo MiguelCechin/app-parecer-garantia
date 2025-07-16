@@ -9,7 +9,7 @@ def gerar_parecer_garantia(dados):
     font = style.font
     font.name = 'Arial'
     font.size = Pt(9)
-    
+
     doc.add_paragraph().add_run("PARECER SIMPLIFICADO").bold = True
     doc.add_paragraph("Para fins de monitoramento de garantias")
 
@@ -53,6 +53,7 @@ def gerar_parecer_garantia(dados):
 
     return nome_arquivo
 
+
 # --- STREAMLIT APP ---
 st.title("Gerador de Parecer de Garantia")
 
@@ -68,9 +69,9 @@ with st.form("form_parecer"):
     data_parcela_1 = st.date_input("Data da primeira parcela", key="data_parcela_1").strftime("%d/%m/%Y")
     data_parcela_final = st.date_input("Data da última parcela", key="data_parcela_final").strftime("%d/%m/%Y")
 
-    submitted = st.form_submit_button("Gerar Parecer", key="botao_submit")
+    gerar = st.form_submit_button("Gerar Parecer", key="botao_submit")
 
-    if submitted:
+    if gerar:
         dados = {
             "solicitante": solicitante,
             "numero_celula": numero_celula,
@@ -88,6 +89,5 @@ with st.form("form_parecer"):
         with open(arquivo, "rb") as file:
             st.success("Parecer gerado com sucesso!")
             st.download_button("Baixar Documento", file, arquivo, mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-
 
 
