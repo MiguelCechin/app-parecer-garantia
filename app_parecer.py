@@ -70,7 +70,7 @@ with st.form("form_parecer"):
     data_parcela_final = st.date_input("Data da última parcela", key="data_parcela_final").strftime("%d/%m/%Y")
 
     gerar = st.form_submit_button("Gerar Parecer", key="botao_submit")
-
+    
     if gerar:
         dados = {
             "solicitante": solicitante,
