@@ -58,41 +58,35 @@ st.title("Gerador de Parecer de Garantia")
 
 with st.form("form_parecer"):
     solicitante = st.text_input("Solicitante", key="solicitante")
-    numero_celula = st.text_input("Número da CCB", key="ccb")
+    numero_celula = st.text_input("Número da CCB", key="numero_celula")
     docs = st.text_area("Documentos recebidos", key="docs")
     cessionario = st.text_input("Cessionário", key="cessionario")
     cedente = st.text_input("Cedente", key="cedente")
     devedor = st.text_input("Devedor", key="devedor")
     data_emissao = st.date_input("Data de emissão", key="data_emissao").strftime("%d/%m/%Y")
-    valor_operacao = st.text_input("Valor da operação", key="valor")
-    data_parcela_1 = st.date_input("Data da primeira parcela", key="parcela_1").strftime("%d/%m/%Y")
-    data_parcela_final = st.date_input("Data da última parcela", key="parcela_final").strftime("%d/%m/%Y")
+    valor_operacao = st.text_input("Valor da operação", key="valor_operacao")
+    data_parcela_1 = st.date_input("Data da primeira parcela", key="data_parcela_1").strftime("%d/%m/%Y")
+    data_parcela_final = st.date_input("Data da última parcela", key="data_parcela_final").strftime("%d/%m/%Y")
 
-    submitted = st.form_submit_button("Gerar Parecer")
-
-    if submitted:
-        dados = {
-            "solicitante": solicitante,
-            "numero_celula": numero_celula,
-            "docs": docs,
-            "cessionario": cessionario,
-            "cedente": cedente,
-            "devedor": devedor,
-            "data de emissão": data_emissao,
-            "valor operação": valor_operacao,
-            "data primeira parcela": data_parcela_1,
-            "data ultima parcela": data_parcela_final,
-        }
-
-        arquivo = gerar_parecer_garantia(dados)
-        with open(arquivo, "rb") as file:
-            st.success("Parecer gerado com sucesso!")
-            st.download_button("Baixar Documento", file, arquivo, mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-    
-    submitted = st.form_submit_button("Gerar Parecer")
+    submitted = st.form_submit_button("Gerar Parecer", key="botao_submit")
 
 if submitted:
+    dados = {
+        "solicitante": solicitante,
+        "numero_celula": numero_celula,
+        "docs": docs,
+        "cessionario": cessionario,
+        "cedente": cedente,
+        "devedor": devedor,
+        "data de emissão": data_emissao,
+        "valor operação": valor_operacao,
+        "data primeira parcela": data_parcela_1,
+        "data ultima parcela": data_parcela_final,
+    }
+
     arquivo = gerar_parecer_garantia(dados)
     with open(arquivo, "rb") as file:
         st.success("Parecer gerado com sucesso!")
         st.download_button("Baixar Documento", file, arquivo, mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+
+
