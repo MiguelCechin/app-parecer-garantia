@@ -70,23 +70,23 @@ with st.form("form_parecer"):
 
     submitted = st.form_submit_button("Gerar Parecer", key="botao_submit")
 
-if submitted:
-    dados = {
-        "solicitante": solicitante,
-        "numero_celula": numero_celula,
-        "docs": docs,
-        "cessionario": cessionario,
-        "cedente": cedente,
-        "devedor": devedor,
-        "data de emissão": data_emissao,
-        "valor operação": valor_operacao,
-        "data primeira parcela": data_parcela_1,
-        "data ultima parcela": data_parcela_final,
-    }
-
-    arquivo = gerar_parecer_garantia(dados)
-    with open(arquivo, "rb") as file:
-        st.success("Parecer gerado com sucesso!")
-        st.download_button("Baixar Documento", file, arquivo, mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+    if submitted:
+        dados = {
+            "solicitante": solicitante,
+            "numero_celula": numero_celula,
+            "docs": docs,
+            "cessionario": cessionario,
+            "cedente": cedente,
+            "devedor": devedor,
+            "data de emissão": data_emissao,
+            "valor operação": valor_operacao,
+            "data primeira parcela": data_parcela_1,
+            "data ultima parcela": data_parcela_final,
+        }
+    
+        arquivo = gerar_parecer_garantia(dados)
+        with open(arquivo, "rb") as file:
+            st.success("Parecer gerado com sucesso!")
+            st.download_button("Baixar Documento", file, arquivo, mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
 
 
