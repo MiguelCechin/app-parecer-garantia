@@ -63,10 +63,10 @@ with st.form("form_parecer"):
     cessionario = st.text_input("Cessionário")
     cedente = st.text_input("Cedente")
     devedor = st.text_input("Devedor")
-    data_emissao = st.date_input("Data de emissão").strftime("%d/%m/%Y")
+    data_emissao = st.date_input("Data de emissão", key="data_emissao").strftime("%d/%m/%Y")
     valor_operacao = st.text_input("Valor da operação")
-    data_parcela_1 = st.date_input("Data da primeira parcela").strftime("%d/%m/%Y")
-    data_parcela_final = st.date_input("Data da última parcela").strftime("%d/%m/%Y")
+    data_parcela_1 = st.date_input("Data da primeira parcela", key="data_parcela_1").strftime("%d/%m/%Y")
+    data_parcela_final = st.date_input("Data da última parcela", key="data_parcela_final").strftime("%d/%m/%Y")
 
     submitted = st.form_submit_button("Gerar Parecer")
 
