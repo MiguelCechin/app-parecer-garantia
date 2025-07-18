@@ -136,11 +136,11 @@ def main():
     valor_inicial = st.text_input("Valor de Avaliação Histórico")
     valor_atual = st.text_input("Valor de Avaliação Atual")
 
-    st.header("Avaliação do Título")
-    r11 = st.radio("1.1 - Instrumento formal apresentado?", ["SIM", "NÃO", "NÃO SE APLICA"])
-    r12 = st.radio("1.2 - Documento assinado?", ["SIM", "NÃO"])
-    r13 = st.radio("1.3 - Assinatura de testemunhas?", ["SIM", "NÃO"])
-    r14 = st.radio("1.4 - Requisitos formais atendidos?", ["SIM", "NÃO"])
+    st.header("Título")
+    r11 = st.radio("1.1 - Foi submetido à análise título/instrumento de formalização do crédito?", ["SIM", "NÃO", "NÃO SE APLICA"])
+    r12 = st.radio("1.2 - O documento mencionado neste item está assinado?", ["SIM", "NÃO"])
+    r13 = st.radio("1.3 - A assinatura é eletrônica?", ["SIM", "NÃO"])
+    r14 = st.radio("1.4 - Em não sendo eletrônica, o documento está assinado por 2 testemunhas?", ["SIM", "NÃO"])
 
     if st.button("Gerar e Baixar Parecer"):
         dados = {
