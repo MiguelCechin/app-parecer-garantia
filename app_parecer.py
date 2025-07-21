@@ -40,7 +40,48 @@ def avaliar_vedacao(respostas):
         elif r22 == "NÃO SE APLICA":
             return ""
     return "Resposta inválida ou incompleta."
+def avaliar_cessao(respostas):
+    r31 = respostas.get("3.1", "").upper()
+    if r31 == "NÃO":
+        return avaliar_comunicacao_cessao(respostas)
+    elif r31 == "NÃO SE APLICA":
+        return "  3.  A análise do título/instrumento da cessão do crédito não se aplica ao presente caso, conforme as especificidades da operação."
+    elif r31 == "SIM":
+        r32 = respostas.get("3.2", "").upper()
+        if r32 == "NÃO":
+            return "  3.  Verificou-se a existência de documento representativo de cessão de crédito que carece de assinatura, e portanto não preenche os requisitos formais mínimos aplicáveis."
+        elif r32 == "SIM":
+            r33 = respostas.get("3.3", "").upper()
+            if r33 == "SIM":
+                return " 3.	Verificou-se a existência de documento representativo de cessão de crédito com o preenchimento do requisitos formais mínimos aplicáveis."
+            elif r33 == "NÃO":
+                r34 = respostas.get("3.4", "").upper()
+                if r34 == "NÃO":
+                    return "  3.  Verificou-se a existência de documento representativo de cessão de crédito que carece da assinatura de testemunhas, e portanto não preenche os requisitos formais mínimos aplicáveis."
+                elif r34 == "SIM":
+                    return "  3.  Verificou-se a existência de documento representativo de cessão de crédito com o preenchimento do requisitos formais mínimos aplicáveis."
+    return "Resposta inválida ou incompleta." 
 
+def avaliar_comunicacao_cessao(respostas):
+    r41 = respostas.get("4.1", "").upper()
+    if r41 == "NÃO":
+        return "  3.  Não foi submetido à analise o instrumento que resultou na cessão do crédito ou qualquer tipo de notificação para fins de comunicação da cessão ao Fundo de Investimento. "
+    elif r41 == "SIM":
+        r42 = respostas.get("4.2", "").upper()
+        if r42 == "NÃO":
+            return "  3.  Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão e carece de assinatura, não preenchendo os requisitos minimos formais aplicáveis."
+        elif r42 == "SIM":
+            r43 = respostas.get("4.3", "").upper()
+            if r43 == "SIM":
+                return " 3.  Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão."
+            elif r43 == "NÃO":
+                r44 = respostas.get("4.4", "").upper()
+                if r44 == "NÃO":
+                    return "  3.  Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão e carece de assinatura das testemunhas, não preenchendo os requisitos minimos formais aplicáveis."
+                elif r44 == "SIM":
+                    return "  3.  Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão."
+    return "Resposta inválida ou incompleta."
+    
 def gerar_parecer_garantia(dados):
     doc = Document()
     # Configurar fonte padrão
@@ -117,9 +158,10 @@ def gerar_parecer_garantia(dados):
 
     # Seção D
     doc.add_paragraph().add_run("D) PRINCIPAIS CONSTATAÇÕES E APONTAMENTOS").bold = True
-    resultado = avaliar_titulo(dados['respostas_titulo']) + " " + avaliar_vedacao(dados['respostas_vedacao'])
-    doc.add_paragraph().add_run(resultado)
-
+    resultado1 = avaliar_titulo(dados['respostas_titulo']) + " " + avaliar_vedacao(dados['respostas_vedacao'])
+    doc.add_paragraph().add_run(resultado1)
+    resultado2 = avaliar_cessao(dados['respostas_cessao'])
+    doc.add_paragraph().add_run(resultado2)
     return doc
 
 
@@ -155,6 +197,18 @@ def main():
     st.header("Vedação")
     r21 = st.radio("2.1 - O título contém vedação à cessão do crédito sem a prévia autorização do(a) devedor(a)?", ["SIM", "NÃO", "NÃO SE APLICA"])
     r22 = st.radio("2.2 - Foi obtida autorização do(a) devedor(a) para a realização da cessão?", ["SIM", "NÃO", "NÃO SE APLICA"]) 
+
+    st.header("Cessão")
+    r31 = st.radio("3.1 - Foi submetido à análise instrumento de formalização da cessão do crédito?", ["SIM", "NÃO", "NÃO SE APLICA"])
+    r32 = st.radio("3.2 - O documento mencionado neste item está assinado?", ["SIM", "NÃO"])
+    r33 = st.radio("3.3 - A assinatura é eletrônica?", ["SIM", "NÃO"])
+    r34 = st.radio("3.4 - Em não sendo eletrônica, o documento está assinado por 2 testemunhas?", ["SIM", "NÃO"])
+
+    st.header("Comunicação da Cessão")
+    r41 = st.radio("4.1 - Foi submetido à análise instrumento de formalização da cessão do crédito?", ["SIM", "NÃO"])
+    r42 = st.radio("4.2 - O documento mencionado neste item está assinado?", ["SIM", "NÃO"])
+    r43 = st.radio("4.3 - A assinatura é eletrônica?", ["SIM", "NÃO"])
+    r44 = st.radio("4.4 - Em não sendo eletrônica, o documento está assinado por 2 testemunhas?", ["SIM", "NÃO"])
     
     if st.button("Gerar e Baixar Parecer"):
         dados = {
@@ -175,7 +229,8 @@ def main():
             'valor_obj_inicial': valor_inicial,
             'valor_obj_atual': valor_atual,
             'respostas_titulo': {'1.1': r11, '1.2': r12, '1.3': r13, '1.4': r14},
-            'respostas_vedacao': {'2.1': r21, '2.2': r22}
+            'respostas_vedacao': {'2.1': r21, '2.2': r22},
+            'respostas_cessao': {'3.1': r31, '3.2': r32, '3.3': r33, '3.4': r34, '4.1' : r41, '4.2' : r42, '4.3' : r43, '4.4' : r44}
         }
         doc = gerar_parecer_garantia(dados)
         output = BytesIO()
