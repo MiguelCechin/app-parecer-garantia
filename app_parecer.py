@@ -17,7 +17,7 @@ def avaliar_titulo(respostas):
         elif r12 == "SIM":
             r13 = respostas.get("1.3", "").upper()
             if r13 == "SIM":
-                return " 2.	Inicialmente, verificou-se a existência de documento representativo de dívida com o preenchimento do requisitos formais mínimos aplicáveis"
+                return " 2.	Inicialmente, verificou-se a existência de documento representativo de dívida com o preenchimento do requisitos formais mínimos aplicáveis."
             elif r13 == "NÃO":
                 r14 = respostas.get("1.4", "").upper()
                 if r14 == "NÃO":
@@ -34,7 +34,7 @@ def avaliar_vedacao(respostas):
     elif r21 == "SIM":
         r22 = respostas.get("2.2", "").upper()
         if r22 == "SIM":
-            return "Verificou-se que o devedor expressamente autorizou a cessão do crédito, não havendo óbice à sua realização, ainda que presente cláusula contratual originalmente impeditiva."
+            return " Verificou-se que o devedor expressamente autorizou a cessão do crédito, não havendo óbice à sua realização, ainda que presente cláusula contratual originalmente impeditiva."
         elif r22 == "NÃO":
             return " Consta cláusula expressa impeditiva da cessão/endosso do crédito, e não se verificou a apresentação de autorização por parte deste."
         elif r22 == "NÃO SE APLICA":
