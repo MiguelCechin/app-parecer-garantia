@@ -13,11 +13,11 @@ def avaliar_titulo(respostas):
     elif r11 == "SIM":
         r12 = respostas.get("1.2", "").upper()
         if r12 == "NÃO":
-            return "  2.  Inicialmente, verificou-se a existência de documento representativo de dívida que carece de assinatura e não preenche os requisitos formais mínimos aplicáveis."
+            return "  2.  Inicialmente, verificou-se a existência de documento representativo de dívida que carece de assinatura, e portanto não preenche os requisitos formais mínimos aplicáveis."
         elif r12 == "SIM":
             r13 = respostas.get("1.3", "").upper()
             if r13 == "SIM":
-                return "  2.  Inicialmente, verificou-se a existência de documento representativo de dívida que carece da assinatura de testemunhas, e portanto não preenche os requisitos formais mínimos aplicáveis."
+                return " 2.	Inicialmente, verificou-se a existência de documento representativo de dívida com o preenchimento do requisitos formais mínimos aplicáveis"
             elif r13 == "NÃO":
                 r14 = respostas.get("1.4", "").upper()
                 if r14 == "NÃO":
