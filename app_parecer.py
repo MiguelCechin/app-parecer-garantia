@@ -31,7 +31,7 @@ def avaliar_vedacao(respostas):
         return " Sem cláusula impeditiva da cessão/endosso."
     elif r21 == "NÃO SE APLICA":
         return ""
-    elif r22 == "SIM":
+    elif r21 == "SIM":
         r22 = respostas.get("2.2", "").upper()
         if r22 == "SIM":
             return "Verificou-se que o devedor expressamente autorizou a cessão do crédito, não havendo óbice à sua realização, ainda que presente cláusula contratual originalmente impeditiva."
