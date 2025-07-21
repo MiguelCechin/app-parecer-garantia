@@ -7,23 +7,23 @@ from io import BytesIO
 def avaliar_titulo(respostas):
     r11 = respostas.get("1.1", "").upper()
     if r11 == "NÃO":
-        return "  2.  Não foi apresentado, até o momento, instrumento formal de constituição da dívida, impossibilitando a verificação de sua regularidade e eventual cessibilidade."
+        return "  2.    Não foi apresentado, até o momento, instrumento formal de constituição da dívida, impossibilitando a verificação de sua regularidade e eventual cessibilidade."
     elif r11 == "NÃO SE APLICA":
-        return "  2.  A análise do título/instrumento de formalização do crédito não se aplica à presente garantia."
+        return "  2.    A análise do título/instrumento de formalização do crédito não se aplica à presente garantia."
     elif r11 == "SIM":
         r12 = respostas.get("1.2", "").upper()
         if r12 == "NÃO":
-            return "  2.  Inicialmente, verificou-se a existência de documento representativo de dívida que carece de assinatura, e portanto não preenche os requisitos formais mínimos aplicáveis."
+            return "  2.    Inicialmente, verificou-se a existência de documento representativo de dívida que carece de assinatura, e portanto não preenche os requisitos formais mínimos aplicáveis."
         elif r12 == "SIM":
             r13 = respostas.get("1.3", "").upper()
             if r13 == "SIM":
-                return " 2.	Inicialmente, verificou-se a existência de documento representativo de dívida com o preenchimento do requisitos formais mínimos aplicáveis."
+                return " 2.    Inicialmente, verificou-se a existência de documento representativo de dívida com o preenchimento do requisitos formais mínimos aplicáveis."
             elif r13 == "NÃO":
                 r14 = respostas.get("1.4", "").upper()
                 if r14 == "NÃO":
-                    return "  2.  Inicialmente, verificou-se a existência de documento representativo de dívida que carece da assinatura de testemunhas, e portanto não preenche os requisitos formais mínimos aplicáveis."
+                    return "  2.    Inicialmente, verificou-se a existência de documento representativo de dívida que carece da assinatura de testemunhas, e portanto não preenche os requisitos formais mínimos aplicáveis."
                 elif r14 == "SIM":
-                    return "  2.  Inicialmente, verificou-se a existência de documento representativo de dívida com o preenchimento de requisitos formais mínimos aplicáveis."
+                    return "  2.    Inicialmente, verificou-se a existência de documento representativo de dívida com o preenchimento de requisitos formais mínimos aplicáveis."
     return "Resposta inválida ou incompleta."
 def avaliar_vedacao(respostas):
     r21 = respostas.get("2.1", "").upper()
@@ -45,41 +45,41 @@ def avaliar_cessao(respostas):
     if r31 == "NÃO":
         return avaliar_comunicacao_cessao(respostas)
     elif r31 == "NÃO SE APLICA":
-        return "  3.  A análise do título/instrumento da cessão do crédito não se aplica ao presente caso, conforme as especificidades da operação."
+        return "  3.    A análise do título/instrumento da cessão do crédito não se aplica ao presente caso, conforme as especificidades da operação."
     elif r31 == "SIM":
         r32 = respostas.get("3.2", "").upper()
         if r32 == "NÃO":
-            return "  3.  Verificou-se a existência de documento representativo de cessão de crédito que carece de assinatura, e portanto não preenche os requisitos formais mínimos aplicáveis."
+            return "  3.    Verificou-se a existência de documento representativo de cessão de crédito que carece de assinatura, e portanto não preenche os requisitos formais mínimos aplicáveis."
         elif r32 == "SIM":
             r33 = respostas.get("3.3", "").upper()
             if r33 == "SIM":
-                return " 3.	Verificou-se a existência de documento representativo de cessão de crédito com o preenchimento do requisitos formais mínimos aplicáveis."
+                return " 3.    Verificou-se a existência de documento representativo de cessão de crédito com o preenchimento do requisitos formais mínimos aplicáveis."
             elif r33 == "NÃO":
                 r34 = respostas.get("3.4", "").upper()
                 if r34 == "NÃO":
-                    return "  3.  Verificou-se a existência de documento representativo de cessão de crédito que carece da assinatura de testemunhas, e portanto não preenche os requisitos formais mínimos aplicáveis."
+                    return "  3.    Verificou-se a existência de documento representativo de cessão de crédito que carece da assinatura de testemunhas, e portanto não preenche os requisitos formais mínimos aplicáveis."
                 elif r34 == "SIM":
-                    return "  3.  Verificou-se a existência de documento representativo de cessão de crédito com o preenchimento do requisitos formais mínimos aplicáveis."
+                    return "  3.    Verificou-se a existência de documento representativo de cessão de crédito com o preenchimento do requisitos formais mínimos aplicáveis."
     return "Resposta inválida ou incompleta." 
 
 def avaliar_comunicacao_cessao(respostas):
     r41 = respostas.get("4.1", "").upper()
     if r41 == "NÃO":
-        return "  3.  Não foi submetido à analise o instrumento que resultou na cessão do crédito ou qualquer tipo de notificação para fins de comunicação da cessão ao Fundo de Investimento. "
+        return "  3.    Não foi submetido à analise o instrumento que resultou na cessão do crédito ou qualquer tipo de notificação para fins de comunicação da cessão ao Fundo de Investimento. "
     elif r41 == "SIM":
         r42 = respostas.get("4.2", "").upper()
         if r42 == "NÃO":
-            return "  3.  Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão e carece de assinatura, não preenchendo os requisitos minimos formais aplicáveis."
+            return "  3.    Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão e carece de assinatura, não preenchendo os requisitos minimos formais aplicáveis."
         elif r42 == "SIM":
             r43 = respostas.get("4.3", "").upper()
             if r43 == "SIM":
-                return " 3.  Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão."
+                return " 3.    Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão."
             elif r43 == "NÃO":
                 r44 = respostas.get("4.4", "").upper()
                 if r44 == "NÃO":
-                    return "  3.  Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão e carece de assinatura das testemunhas, não preenchendo os requisitos minimos formais aplicáveis."
+                    return "  3.    Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão e carece de assinatura das testemunhas, não preenchendo os requisitos minimos formais aplicáveis."
                 elif r44 == "SIM":
-                    return "  3.  Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão."
+                    return "  3.    Não foi submetido à analise o intrumento que resultou na cessão de crédito ao Fundo de Investimento. Entretanto, a existência da cessão pode ser aferida por meio da notificação para fins de comunicação da cessão, ressalvando-se que a referida comunicação não permite pleno entendimento dos termos da cessão."
     return "Resposta inválida ou incompleta."
     
 def gerar_parecer_garantia(dados):
