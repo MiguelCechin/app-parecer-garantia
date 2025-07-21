@@ -38,13 +38,11 @@ def gerar_parecer_garantia(dados):
     titulo = doc.add_paragraph()
     titulo.alignment = 1
     titulo.add_run("PARECER SIMPLIFICADO").bold = True
-    doc.add_paragraph()
 
     # Subtítulo
     subtitulo = doc.add_paragraph()
     subtitulo.alignment = 1
     subtitulo.add_run("Para fins de monitoramento de garantias")
-    doc.add_paragraph()
 
     # Parágrafo inicial
     para1 = doc.add_paragraph()
@@ -52,12 +50,9 @@ def gerar_parecer_garantia(dados):
     para1.add_run(
         f"Em atenção à solicitação feita pela {dados['solicitante']} na qualidade de gestora do(s) {dados['gestora']}, apresentamos o presente parecer jurídico simplificado a respeito da capacidade de execução de garantias ligadas a ativos financeiros representativos de dívidas ou obrigações titularizados pelo(s) Fundo(s)."
     )
-    doc.add_paragraph()
-
     # Seção A
     doc.add_paragraph().add_run("A) INFORMAÇÕES PRELIMINARES").bold = True
     doc.add_paragraph().add_run("1. Para a elaboração deste parecer, foram acessadas as seguintes informações e/ou documentos:")
-    doc.add_paragraph()
 
     table1 = doc.add_table(rows=3, cols=2)
     table1.style = 'Table Grid'
