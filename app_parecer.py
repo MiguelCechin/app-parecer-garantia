@@ -31,14 +31,14 @@ def avaliar_vedacao(respostas):
         return ""
     elif r11 == "SIM":
         r21 = respostas.get("2.1", "").upper()
-        if r21 == "NÃO"
-        return " Sem cláusula impeditiva da cessão/endosso."
-    elif r21 == "SIM":
-        r22 = respostas.get("2.2", "").upper()
-        if r22 == "SIM"
-        return "Verificou-se que o devedor expressamente autorizou a cessão do crédito, não havendo óbice à sua realização, ainda que presente cláusula contratual originalmente impeditiva."
-        if r22 == "NÃO"
-        return " Consta cláusula expressa impeditiva da cessão/endosso do crédito, e não se verificou a apresentação de autorização por parte deste."
+        if r21 == "NÃO":
+            return " Sem cláusula impeditiva da cessão/endosso."
+        elif r21 == "SIM":
+            r22 = respostas.get("2.2", "").upper()
+            if r22 == "SIM":
+                return "Verificou-se que o devedor expressamente autorizou a cessão do crédito, não havendo óbice à sua realização, ainda que presente cláusula contratual originalmente impeditiva."
+            elif r22 == "NÃO":
+                return " Consta cláusula expressa impeditiva da cessão/endosso do crédito, e não se verificou a apresentação de autorização por parte deste."
 
 def gerar_parecer_garantia(dados):
     doc = Document()
