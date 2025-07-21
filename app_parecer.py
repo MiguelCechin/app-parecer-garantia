@@ -26,19 +26,20 @@ def avaliar_titulo(respostas):
                     return "  2.  Inicialmente, verificou-se a existência de documento representativo de dívida com o preenchimento de requisitos formais mínimos aplicáveis."
     return "Resposta inválida ou incompleta."
 def avaliar_vedacao(respostas):
-    r11 = respostas.get("1.1", "").upper()
-    if r11 == "NÃO" or r11 == "NÃO SE APLICA":
+    r21 = respostas.get("2.1", "").upper()
+    if r21 == "NÃO":
+        return " Sem cláusula impeditiva da cessão/endosso."
+    elif r21 == "NÃO SE APLICA":
         return ""
-    elif r11 == "SIM":
-        r21 = respostas.get("2.1", "").upper()
-        if r21 == "NÃO":
-            return " Sem cláusula impeditiva da cessão/endosso."
-        elif r21 == "SIM":
-            r22 = respostas.get("2.2", "").upper()
-            if r22 == "SIM":
-                return "Verificou-se que o devedor expressamente autorizou a cessão do crédito, não havendo óbice à sua realização, ainda que presente cláusula contratual originalmente impeditiva."
-            elif r22 == "NÃO":
-                return " Consta cláusula expressa impeditiva da cessão/endosso do crédito, e não se verificou a apresentação de autorização por parte deste."
+    elif r22 == "SIM":
+        r22 = respostas.get("2.2", "").upper()
+        if r22 == "SIM":
+            return "Verificou-se que o devedor expressamente autorizou a cessão do crédito, não havendo óbice à sua realização, ainda que presente cláusula contratual originalmente impeditiva."
+        elif r22 == "NÃO":
+            return " Consta cláusula expressa impeditiva da cessão/endosso do crédito, e não se verificou a apresentação de autorização por parte deste."
+        elif r22 == "NÃO SE APLICA":
+            return ""
+    return "Resposta inválida ou incompleta."
 
 def gerar_parecer_garantia(dados):
     doc = Document()
@@ -152,8 +153,8 @@ def main():
     r14 = st.radio("1.4 - Em não sendo eletrônica, o documento está assinado por 2 testemunhas?", ["SIM", "NÃO"])
 
     st.header("Vedação")
-    r11 = st.radio("2.1 - O título contém vedação à cessão do crédito sem a prévia autorização do(a) devedor(a)?", ["SIM", "NÃO"])
-    r12 = st.radio("2.2 - Foi obtida autorização do(a) devedor(a) para a realização da cessão?", ["SIM", "NÃO"]) 
+    r21 = st.radio("2.1 - O título contém vedação à cessão do crédito sem a prévia autorização do(a) devedor(a)?", ["SIM", "NÃO", "NÃO SE APLICA"])
+    r22 = st.radio("2.2 - Foi obtida autorização do(a) devedor(a) para a realização da cessão?", ["SIM", "NÃO", "NÃO SE APLICA"]) 
     
     if st.button("Gerar e Baixar Parecer"):
         dados = {
@@ -174,7 +175,7 @@ def main():
             'valor_obj_inicial': valor_inicial,
             'valor_obj_atual': valor_atual,
             'respostas_titulo': {'1.1': r11, '1.2': r12, '1.3': r13, '1.4': r14},
-            'respostas_vedacao': {'1.1': r11, '1.2': r12}
+            'respostas_vedacao': {'2.1': r21, '2.2': r22}
         }
         doc = gerar_parecer_garantia(dados)
         output = BytesIO()
